@@ -12,16 +12,17 @@ const reducer = (state = defaultState, action) => {
         ...state,
         items: [...state.items, action.payload.item]
       }
-    case ActionTypes.ON_LOGIN_CLICK:
-      return {
-        ...state,
-        loginClicked: true,
-        login: action.payload
-      }
     case ActionTypes.REMOVE_FROM_CART:
+      const index = state.items.findIndex(item => item.id === action.payload.id)
+      let newItems = [...state.items]
+      if (index >= 0) {
+        newItems.splice(index, 1)
+      } else {
+        console.warn(`Cant remove product ${action.payload.id}`)
+      }
       return {
         ...state,
-        items: state.items.filter(item => item.title !== action.payload.id)
+        items: newItems,
       }
     default:
       return state
@@ -31,7 +32,6 @@ const reducer = (state = defaultState, action) => {
 const getCartItems = () => state => state.checkout.items
 const getCartTotalPrice = () => state => {
   const items = getCartItems()(state)
-  console.log(items)
   return items.reduce((total, item) => total + item.price, 0)
 }
 

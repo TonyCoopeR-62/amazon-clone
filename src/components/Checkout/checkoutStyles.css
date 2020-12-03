@@ -3,6 +3,7 @@
   padding: 20px;
   background-color: #fff;
   height: max-content;
+  justify-content: center;
 }
 
 .checkout__ad {
@@ -17,5 +18,5 @@
 }
 
 .checkout__left {
-  
+  max-width: 800px;
 }

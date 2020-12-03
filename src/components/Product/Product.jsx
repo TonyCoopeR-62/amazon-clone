@@ -1,8 +1,8 @@
 import React from 'react'
-import './Product.css'
+import './productStyles.css'
 
 const Product = (props) => {
-  const { title, price, rating, image, onAddToCartClicked, remove } = props
+  const { title, price, rating, image, onAddToCartClicked, id } = props
   return (
     <div className="product">
       <div className="product__info">
@@ -22,13 +22,14 @@ const Product = (props) => {
         <img alt={title} src={image} />
       <button
         className="btn-primary"
-        onClick={() => remove ? remove(title) : onAddToCartClicked({
+        onClick={() => onAddToCartClicked({
           title,
           price,
           rating,
-          image
+          image,
+          id,
       })}>
-        {remove ? 'Remove From Basket' : 'Add to Basket'}
+        Add to Basket
       </button>
     </div>
   )

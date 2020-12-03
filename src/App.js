@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from './components/Header'
 import Home from './components/Home'
+import Login from './components/Login'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Checkout from './components/Checkout'
 import { Provider } from 'react-redux'
@@ -10,15 +11,19 @@ const App = () => {
   return (
     <Provider store={clientStore}>
       <Router>
-          <Header />
-          <Switch>
-            <Route path='/checkout'>
-              <Checkout />
-            </Route>
-            <Route path='/'>
-              <Home />
-            </Route>
-          </Switch>
+        <Switch>
+          <Route path='/login'>
+            <Login />
+          </Route>
+          <Route path='/checkout'>
+            <Header />
+            <Checkout />
+          </Route>
+          <Route path='/'>
+            <Header />
+            <Home />
+          </Route>
+        </Switch>
       </Router>
     </Provider>
   )
