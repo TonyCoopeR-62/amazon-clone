@@ -1,9 +1,8 @@
 import React from 'react'
-import './Subtotal.css'
+import './subtotalStyles.css'
 import CurrencyFormat from 'react-currency-format'
 
-const Subtotal = ({ cartTotalPrice = 0, items }) => {
-  console.log(cartTotalPrice)
+const Subtotal = ({ cartTotalPrice, items }) => {
   return (
     <div className="subtotal">
       <CurrencyFormat

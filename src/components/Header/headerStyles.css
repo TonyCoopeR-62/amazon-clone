@@ -33,13 +33,7 @@
   padding: 10px;
   border: none;
   width: 100%;
-}
-
-.header__searchInput:focus {
-  outline-style: solid;
-  outline-color: #f08804;
-  outline-width: medium;
-
+  outline-color: #cd9042;
 }
 
 .header__searchIcon {
