@@ -2,7 +2,7 @@ import React from 'react'
 import Product from '../Product'
 import './homeStyles.css'
 
-const Home = (props) => {
+const Home = () => {
   return (
     <div className="home">
       <div className="home__container">

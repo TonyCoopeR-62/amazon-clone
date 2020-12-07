@@ -3,8 +3,14 @@ import './headerStyles.css'
 import SearchIcon from '@material-ui/icons/Search'
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket'
 import { Link } from 'react-router-dom'
+import { auth } from '../../firebase'
 
-const Header = ({ items }) => {
+const Header = ({ items, userData }) => {
+  const handleAuth = () => {
+    if (userData) {
+      auth.signOut()
+    }
+  }
   return (
     <div className='header'>
       <Link to='/'>
@@ -23,14 +29,14 @@ const Header = ({ items }) => {
         <SearchIcon className="header__searchIcon" />
       </div>
       <div className="header__nav">
-        <Link to="/login">
-          <div className="header__option">
+        <Link to={!userData && '/login'}>
+          <div className="header__option" onClick={handleAuth}>
             <span className="header__optionLineOne">
-              Hello Guest
-          </span>
+              {userData ? userData.email : 'Hello Guest'}
+            </span>
             <div className="header__optionLineTwo">
               <span>
-                Sign In
+                {userData ? 'Log Out' : 'Sign In'}
               </span>
             </div>
           </div>
