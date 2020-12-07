@@ -1,14 +1,15 @@
-import { addToCart, removeFromCart } from './actions'
+import { removeFromCart } from './actions'
 import { getCartItems } from './reducer'
 import { connect } from 'react-redux'
 import Checkout from './Checkout'
+import { getUserData } from '../Login/reducer'
 
 const mapStateToProps = state => ({
   items: getCartItems()(state),
+  user: getUserData()(state),
 })
 
 const mapDispatchToProps = dispatch => ({
-  onAddToCartClicked: item => dispatch(addToCart(item)),
   onRemoveItemClicked: id => dispatch(removeFromCart(id))
 })
 

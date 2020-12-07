@@ -1,8 +1,10 @@
 import { ActionTypes } from './actions'
 
 const initialState = {
-  credentials: null,
-  isUserLogin: false
+  userData: null,
+  isUserLogin: false,
+  isUserAuthError: false,
+  error: null,
 }
 
 const reducer = (state = initialState, action) => {
@@ -10,23 +12,30 @@ const reducer = (state = initialState, action) => {
     case ActionTypes.SIGN_IN:
       return {
         ...state,
-        credentials: action.payload.credentials,
+        userData: action.payload.data,
         isUserLogin: true,
       }
-    case ActionTypes.REGISTER: // перенести в эпик
+    case ActionTypes.SHOW_ERROR:
       return {
         ...state,
-        credentials: action.payload.credentials,
-        isUserLogin: true,
+        isUserLogin: false,
+        isUserAuthError: true,
+        error: action.payload.error.message
       }
       default:
         return state
   }
 }
 
-const isUserLogin = () => state => state.isUserLogin
+const isUserLogin = () => state => state.login.isUserLogin
+const isUserAuthError = () => state => state.login.isUserAuthError
+const getErrorMessage = () => state => state.login.error
+const getUserData = () => state => state.login.userData
 
 export {
   reducer as default,
   isUserLogin,
+  isUserAuthError,
+  getErrorMessage,
+  getUserData,
 }
