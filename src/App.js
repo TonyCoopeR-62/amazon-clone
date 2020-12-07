@@ -1,13 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from './components/Header'
-import Home from './components/Home'
+import Home from './components/Home/Home'
 import Login from './components/Login'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Checkout from './components/Checkout'
 import { Provider } from 'react-redux'
 import clientStore from './createStore'
+import { auth } from './firebase'
+import { signIn } from './components/Login/actions'
 
 const App = () => {
+  useEffect(() => {
+    auth.onAuthStateChanged(authUser => {
+      if (authUser) {
+        clientStore.dispatch(signIn(authUser))
+      } else {
+        clientStore.dispatch(signIn(null))
+      }
+    })
+  }, [])
   return (
     <Provider store={clientStore}>
       <Router>

@@ -1,12 +1,13 @@
 const ActionTypes = {
   SIGN_IN: '@@/LOGIN/SIGN_IN',
-  REGISTER: '@@/LOGIN/REGISTER'
+  REGISTER: '@@/LOGIN/REGISTER',
+  SHOW_ERROR: '@@/LOGIN/SHOW_ERROR',
 }
 
-const signIn = (credentials) => ({
+const signIn = data => ({
   type: ActionTypes.SIGN_IN,
   payload: {
-    credentials,
+    data,
   }
 })
 
@@ -17,8 +18,16 @@ const register = (credentials) => ({
   }
 })
 
+const showError = error => ({
+  type: ActionTypes.SHOW_ERROR,
+  payload: {
+    error,
+  }
+})
+
 export {
   ActionTypes,
   signIn,
   register,
+  showError,
 }

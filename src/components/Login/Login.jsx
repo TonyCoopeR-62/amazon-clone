@@ -1,33 +1,32 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+import { auth } from '../../firebase'
 import './loginStyles.css'
 
-const Login = ({ onSignInClicked, onRegisterClicked }) => {
-  const [credentials, setCredentials] = useState({
-    email: '',
-    password: '',
-  })
+const Login = ({ onSignInClicked, userData, onRegisterClicked, isUserAuthError, errorMessage }) => {
+  const history = useHistory()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const signIn = (e) => {
     e.preventDefault()
-    return onSignInClicked(credentials)
+    return onSignInClicked()
     // firebase logic here
   }
 
   const register = (e) => {
     e.preventDefault()
-    // register logic
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((res) => {
+        if (res) {
+          history.push('/')
+          onSignInClicked(res)
+        }
+      })
+    .catch(error => console.log(error.message))
   }
 
-  const handleChange = (event) => {
-    const target = event.target
-    const value = target.value
-    const name = target.name
-    setCredentials({
-      ...credentials,
-      [name]: [value]
-    })
-  }
   return (
     <div className="login">
       <Link to="/">
@@ -44,16 +43,16 @@ const Login = ({ onSignInClicked, onRegisterClicked }) => {
           <input 
             type="email"
             name="email"
-            value={credentials.email}
-            onChange={handleChange}
+            value={email}
+            onChange={e => setEmail(e.target.value)}
           />
 
           <h5>Password</h5>
           <input 
             type="password"
             name="password"
-            value={credentials.password}
-            onChange={handleChange}
+            value={password}
+            onChange={e => setPassword(e.target.value)}
           />
           <button
             onClick={signIn}
@@ -72,6 +71,7 @@ const Login = ({ onSignInClicked, onRegisterClicked }) => {
         >
           Create your Amazon Account
         </button>
+        {isUserAuthError && <p>{errorMessage}</p>}
       </div>
     </div>
   )
