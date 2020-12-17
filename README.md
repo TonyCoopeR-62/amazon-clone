@@ -6,3 +6,5 @@ Used technologies:
  - redux, redux-observable, Rxjs
  - Axios
  - Firebase
+ 
+ ===== STILL IN PROGRESS ======
