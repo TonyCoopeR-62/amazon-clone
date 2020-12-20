@@ -61,9 +61,6 @@ const Home = () => {
             rating={4}
           />
         </div>
-
-
-
       </div>
     </div>
   )

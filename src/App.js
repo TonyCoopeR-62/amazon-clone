@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import clientStore from './createStore'
 import { auth } from './firebase'
 import { signIn } from './components/Login/actions'
+import { ToastProvider } from 'react-toast-notifications'
 
 const App = () => {
   useEffect(() => {
@@ -31,8 +32,10 @@ const App = () => {
             <Checkout />
           </Route>
           <Route path='/'>
-            <Header />
-            <Home />
+            <ToastProvider>
+              <Header />
+              <Home />
+            </ToastProvider>
           </Route>
         </Switch>
       </Router>
