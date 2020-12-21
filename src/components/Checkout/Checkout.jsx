@@ -1,28 +1,26 @@
 import React, { forwardRef } from 'react'
 import Subtotal from '../Subtotal'
 import './checkoutStyles.css'
-import CheckoutProduct from '../Product/CheckoutProduct/CheckoutProduct'
+import CheckoutProduct from '../Product/CheckoutProduct'
 import FlipMove from 'react-flip-move'
 
 const FunctionalArticle = forwardRef((props, ref) => {
-  const { index, price, image, title, rating, remove, id } = props
+  const { index, price, image, title, rating, id } = props
   return (
-  <div ref={ref}>
-    <CheckoutProduct
-      key={index}
-      price={price}
-      image={image}
-      title={title}
-      rating={rating}
-      remove={remove}
-      id={id}
-    />
-  </div>
+    <div ref={ref}>
+      <CheckoutProduct
+        key={index}
+        price={price}
+        image={image}
+        title={title}
+        rating={rating}
+        id={id}
+      />
+    </div>
   )
-}
-)
+})
 
-const Checkout = ({ items, onRemoveItemClicked, user }) => {
+const Checkout = ({ items, user }) => {
   return (
     <div className="checkout">
       <div className="checkout__left">
@@ -35,7 +33,7 @@ const Checkout = ({ items, onRemoveItemClicked, user }) => {
         <h2 className="checkout__title">Your Shopping Basket</h2>
         <FlipMove typeName={null}>
           {items.map((item) =>
-            <FunctionalArticle key={item.id} {...item} remove={onRemoveItemClicked}/>
+            <FunctionalArticle key={item.id} {...item} />
           )}
         </FlipMove>
       </div>

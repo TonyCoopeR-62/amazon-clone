@@ -11,7 +11,6 @@ const Login = ({ onSignInClicked, userData, onRegisterClicked, isUserAuthError, 
   const signIn = (e) => {
     e.preventDefault()
     return onSignInClicked()
-    // firebase logic here
   }
 
   const register = (e) => {

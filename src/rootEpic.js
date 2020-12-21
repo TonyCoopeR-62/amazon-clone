@@ -8,13 +8,6 @@ const epicRegistry = [
 ]
 const epic$ = new BehaviorSubject(combineEpics(...epicRegistry))
 
-// const rootEpic = (action$, state$) =>
-//   epic$
-//     .mergeMap(epic => epic(action$, state$))
-//     .catchError((error, source) => {
-//       if (console) console.error(error)
-//       return source
-//     })
 const rootEpic = (action$, state$) =>
   epic$.pipe(
     mergeMap(epic => epic(action$, state$)),
