@@ -1,6 +1,7 @@
 const ActionTypes = {
-  ADD_TO_CART: '@@/CHECKOUT/ADD_TO_CART',
-  REMOVE_FROM_CART: '@@/CHECKOUT/REMOVE_FROM_CART',
+  ADD_TO_CART: '@@CHECKOUT/ADD_TO_CART',
+  REMOVE_FROM_CART: '@@CHECKOUT/REMOVE_FROM_CART',
+  CLEAR_CART: '@@CHECKOUT/CLEAR_CART',
 }
 
 const addToCart = item => ({
@@ -17,8 +18,13 @@ const removeFromCart = id => ({
   }
 })
 
+const clearCart = () => ({
+  type: ActionTypes.CLEAR_CART,
+})
+
 export {
   ActionTypes,
   addToCart,
   removeFromCart,
+  clearCart,
 }
