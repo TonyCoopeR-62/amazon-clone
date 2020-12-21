@@ -1,7 +1,8 @@
 import React from 'react'
 import './checkoutProductStyles.css'
 
-const CheckoutProduct = ({ title, image, id, price, rating, remove }) => {
+const CheckoutProduct = (props) => {
+  const { title, image, id, price, rating, onRemoveItemClicked } = props
   return (
     <div className="checkoutProduct">
       <img className="checkoutProduct__image" src={image} alt=""/>
@@ -19,10 +20,8 @@ const CheckoutProduct = ({ title, image, id, price, rating, remove }) => {
             ))
           }
         </div>
-        <button className="btn-primary" onClick={() => remove(id)}>Remove from Basket</button>
-      </div>
-    
-    
+        <button className="btn-primary" onClick={() => onRemoveItemClicked(id)}>Remove from Basket</button>
+      </div>   
     </div>
   )
 }
