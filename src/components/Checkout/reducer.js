@@ -24,6 +24,11 @@ const reducer = (state = defaultState, action) => {
         ...state,
         items: newItems,
       }
+    case ActionTypes.CLEAR_CART:
+      return {
+        ...state,
+        items: [],
+      }
     default:
       return state
   }

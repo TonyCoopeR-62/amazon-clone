@@ -1,7 +1,7 @@
 const ActionTypes = {
-  SIGN_IN: '@@/LOGIN/SIGN_IN',
-  REGISTER: '@@/LOGIN/REGISTER',
-  SHOW_ERROR: '@@/LOGIN/SHOW_ERROR',
+  SIGN_IN: '@@LOGIN/SIGN_IN',
+  REGISTER: '@@LOGIN/REGISTER',
+  SHOW_ERROR: '@@LOGIN/SHOW_ERROR',
 }
 
 const signIn = data => ({

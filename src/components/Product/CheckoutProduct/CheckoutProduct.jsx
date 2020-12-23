@@ -2,7 +2,7 @@ import React from 'react'
 import './checkoutProductStyles.css'
 
 const CheckoutProduct = (props) => {
-  const { title, image, id, price, rating, onRemoveItemClicked } = props
+  const { title, image, id, price, rating, onRemoveItemClicked, hideButton } = props
   return (
     <div className="checkoutProduct">
       <img className="checkoutProduct__image" src={image} alt=""/>
@@ -20,7 +20,9 @@ const CheckoutProduct = (props) => {
             ))
           }
         </div>
-        <button className="btn-primary" onClick={() => onRemoveItemClicked(id)}>Remove from Basket</button>
+        {!hideButton &&
+          <button className="btn-primary" onClick={() => onRemoveItemClicked(id)}>Remove from Basket</button>
+        }
       </div>   
     </div>
   )
