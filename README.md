@@ -7,5 +7,3 @@ Used technologies:
  - Firebase
  - Axios
  - Stripe
-
- ===== STILL IN PROGRESS ======
